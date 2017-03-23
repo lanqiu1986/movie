@@ -17,7 +17,8 @@
           <td><%= link_to(film.name, film_path(film)) %></td>
           <td><%= film.description %></td>
           <td>
-              <%= link_to("Edit", edit_film_path(film),    class: "btn btn-sm btn-default",
+              <%= link_to("Edit", edit_film_path(film), class: "btn btn-sm btn-default")%>
+              <%= link_to("Delete", film_path(film),    class: "btn btn-sm btn-default",
                           method: :delete, data: { confirm: "Are you sure?" } )%>
           </td>
         </tr>
