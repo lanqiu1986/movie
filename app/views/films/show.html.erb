@@ -2,7 +2,7 @@
 <div class="col-md-12">
   <div class="film">
 
-    <%= link_to("Write a Review", new_film_post_path(@film), class: "btn btn-default pull-right")%>
+    <%= link_to("Write a Review", new_film_review_path(@film), class: "btn btn-default pull-right")%>
 
     <% if current_user && current_user == @film.user %>
       <%= link_to("Edit", edit_film_path(@film), class: "btn btn-primary pull-right")%>
@@ -10,4 +10,23 @@
   </div>
   <h2><%= @film.name %></h2>
   <p><%= @film.description %></p>
+
+    <table class="table">
+    <thead>
+     <tr>
+        <th>内容</th>
+        <th>发表者</th>
+        <th>发表时间</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @reviews.each do |review| %>
+        <tr>
+          <td><%= review.content %></td>
+          <td><%= review.user.email %></td>
+          <td><%= review.created_at %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
