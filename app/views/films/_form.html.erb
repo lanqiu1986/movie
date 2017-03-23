@@ -1,18 +1,16 @@
 <%= form_for @film do |f| %>
-<% if @film.errors.any? %>
-<ul>
-  <% @film.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-  <% end %>
-</ul>
-<% end %>
-Name
-<%= f.text_field :name %>
-<br>
-叙述
-<br>
-<%= f.text_area :description %>
-<br>
 
-<%= f.submit "Submit", :disable_with => 'Submiting...' %>
+<div class="form-film">
+    <div class="form-film string optional">
+        <%= f.label "name", :class => "string optional control-label" %>
+        <%= f.text_field :name, :class => "string optional form-control" %>
+    </div>
+
+    <div class="form-film string optional">
+        <%= f.label "description", :class => "string optional control-label" %>
+        <%= f.text_area :description, :class => "string optional form-control" %>
+    </div>
+
+</div>
+<%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submiting..." } %>
 <% end %>
