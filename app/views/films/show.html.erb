@@ -4,8 +4,10 @@
     <span class="pull-right">
       <% if current_user && current_user.is_favor_of?(@film) %>
         <label class="label label-success"> Favorited </label>
+          <%= link_to("favorite cancle",quit_film_path(@film), method: :post, class: "btn btn-default")%>
       <% else %>
         <label class="label label-warning"> Not Favorite </label>
+         <%= link_to("Join favorite", join_film_path(@film), method: :post, class: "btn btn-default") %>
       <% end %>
     </span>
     <%= link_to("Write a Review", new_film_review_path(@film), class: "btn btn-default pull-right")%>

@@ -42,6 +42,32 @@ class FilmsController < ApplicationController
     redirect_to films_path
   end
 
+  def join
+     @film = Film.find(params[:id])
+
+      if !current_user.is_favor_of?(@film)
+        current_user.favorite_join!(@film)
+        flash[:notice] = "favorited"
+      else
+        flash[:warning] = "你已经favorited了！"
+      end
+
+      redirect_to film_path(@film)
+    end
+
+    def quit
+      @film = Film.find(params[:id])
+
+      if current_user.is_favor_of?(@film)
+        current_user.favorite_cancel!(@film)
+        flash[:alert] = "已退出favorite！"
+      else
+        flash[:warning] = "你不是favorite，怎么退出 XD"
+      end
+
+      redirect_to film_path(@film)
+    end
+
   private
   def find_film_and_check_permission
     @film = film.find(params[:id])
