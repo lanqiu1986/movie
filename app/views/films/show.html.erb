@@ -1,7 +1,13 @@
 
 <div class="col-md-12">
   <div class="film">
-
+    <span class="pull-right">
+      <% if current_user && current_user.is_favor_of?(@film) %>
+        <label class="label label-success"> Favorited </label>
+      <% else %>
+        <label class="label label-warning"> Not Favorite </label>
+      <% end %>
+    </span>
     <%= link_to("Write a Review", new_film_review_path(@film), class: "btn btn-default pull-right")%>
 
     <% if current_user && current_user == @film.user %>

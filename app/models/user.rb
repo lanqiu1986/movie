@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :films
   has_many :reviews
-  has_many :film_relationships
-  has_many :participated_films, :through => :film_relationships, :source => :film
+  has_many :film_relatinships
+  has_many :participated_films, :through => :film_relatinships, :source => :film
 
   def is_favor_of?(film)
     participated_films.include?(film)
