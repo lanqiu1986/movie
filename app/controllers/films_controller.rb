@@ -13,6 +13,7 @@ class FilmsController < ApplicationController
     @film = Film.new(film_params)
     @film.user = current_user
     if @film.save
+      current_user.favorite_join!(@film)
       redirect_to films_path
     else
       render :new
