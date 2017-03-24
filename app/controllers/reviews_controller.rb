@@ -4,7 +4,11 @@ class ReviewsController < ApplicationController
 
   def new
     @film = Film.find(params[:film_id])
-    @review = Review.new
+    if current_user.is_favor_of?(@film)
+      @review = Review.new
+    else
+      redirect_to film_path(@film)
+    end
   end
 
   def create
